@@ -2,12 +2,20 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
+
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSignalR();
+builder.Services.AddScoped<ChatHub>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IRoomService, RoomService>();
+
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // builder.Services.AddScoped<IAuthService, AuthService>();
 // builder.Services.AddScoped<IPostService, PostService>();
@@ -33,7 +41,11 @@ builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 // builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
+
+app.MapHub<ChatHub>("/hubs/chat");
+
 
 // app.UseSwagger();
 // app.UseSwaggerUI();
@@ -44,4 +56,6 @@ app.UseAuthorization();
 // app.MapAuthEndpoints();
 // app.MapPostEndpoints();
 
+app.MapAuthEndpoints();
+app.MapRoomEndpoints();
 app.Run();
