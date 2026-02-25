@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "sykHIo86u9g=",
+  "success": true,
+  "projectFilePath": "/Users/asimseferli/Desktop/c#/chathub/chathub.csproj",
+  "expectedPackageFiles": [
+    "/Users/asimseferli/.nuget/packages/microsoft.aspnetcore.openapi/9.0.4/microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
+    "/Users/asimseferli/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
